@@ -1,5 +1,6 @@
 const initialState = {
   counter: 0,
+  results: [],
 };
 
 const Reducer = (state = initialState, action) => {
@@ -23,6 +24,16 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         counter: state.counter - action.value,
+      };
+    case 'SHOW':
+      return {
+        ...state,
+        results: [...state.results, state.counter],
+      };
+    case 'DELETE':
+      return {
+        ...state,
+        results: state.results.filter((el, index) => index !== action.id),
       };
     default:
       return state;
